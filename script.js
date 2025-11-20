@@ -1,5 +1,3 @@
-/* ========== TOAST & MODAL (auto-insert DOM if missing) ========== */
-
 (function ensureUiContainers(){
   // Toast
   if(!document.getElementById('toast')){
@@ -173,12 +171,14 @@ function stripTime(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate(
    >28:          Post-luteal / Late cycle
 */
 function getPhaseFixed(daysSince){
-  if(daysSince <= 0) return 'Not started yet';
+  if(daysSince <= 0) return 'Cycle has Not started yet';
   if(daysSince >= 1 && daysSince <= 6) return 'Menstrual Phase (days 1–6)';
   if(daysSince >= 7 && daysSince <= 13) return 'Proliferative or Follicular Phase (days 7–13)';
   if(daysSince === 14) return 'Ovulatory Phase (day 14)';
   if(daysSince >= 15 && daysSince <= 28) return 'Secretory or Luteal Phase (days 15–28)';
-  if(daysSince > 28) return 'Post-luteal / Late cycle Phase (day >28)';
+  if(daysSince > 28 && daysSince<=34) return 'Post-luteal / Late cycle Phase (day >28)';
+  if(daysSince>34) return 'Your Menstrual cycle might have Ended';
+
   return '';
 }
 
@@ -215,8 +215,8 @@ function calculateCycle(show=true){
       <div class="small" style="margin-top:8px">Days since last period: <strong>${daysSince}</strong></div>
       <div class="small" style="margin-top:6px">Estimated next period: <strong>${fmtDateIsoToFriendly(next.toISOString())}</strong></div>
       <div class="small" style="margin-top:6px">Fertile window (estimate): <strong>${fmtDateIsoToFriendly(fertileStart.toISOString())}</strong> — <strong>${fmtDateIsoToFriendly(fertileEnd.toISOString())}</strong></div>
-      <div class="small" style="margin-top:6px">Period length (diagram): <strong>1–6 days</strong></div>
-      <div style="margin-top:10px;font-weight:700;color:var(--accent)">You are in ${phaseText}</div>
+      <div class="small" style="margin-top:6px">Period length: <strong>1–6 days</strong></div>
+      <div style="margin-top:10px;font-weight:700;color:var(--accent)">Current Probable Status: ${phaseText}</div>
     `;
   }
 
