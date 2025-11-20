@@ -1,0 +1,257 @@
+:root {
+  --bg: #fff5f8;
+  --card: #ffffff;
+  --accent: #d6336c;
+  --muted: #6b6b6b;
+  --glass: rgba(255, 255, 255, 0.6);
+  --btn: #d6336c;
+  --btn-dark: #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f12;
+  --card: #111217;
+  --accent: #ff6b9a;
+  --muted: #9aa0a6;
+  --glass: rgba(255, 255, 255, 0.04);
+  --btn: #ffffff;
+  --btn-dark: #0f0f12;
+}
+
+* {
+  box-sizing: border-box;
+  transition: 0.25s ease all;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-image: url(light.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 10% 10%, rgba(214, 51, 108, 0.07), transparent 15%), var(--bg);
+  font-family: Inter, ui-sans-serif, system-ui;
+  color: var(--muted);
+  padding: 24px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  font-size: small;
+  transform: translateX(-50%);
+  background: var(--card);
+  color: var(--accent);
+  padding: 14px 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease, transform .4s ease;
+  font-weight: 600;
+  z-index: 2000;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(3px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+.modal-box {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 16px;
+  width: 300px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* BUTTON ANIMATION */
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: var(--btn);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  background: #6b6b6b;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .2s ease, color .2s ease;
+}
+
+/* White toggle in dark mode */
+[data-theme="dark"] .theme-toggle {
+  background: var(--btn);
+  color: var(--btn-dark);
+
+}
+[data-theme="dark"] .btn {
+  background: var(--accent);  
+  color: #0f0f12;            
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  background: #6b6b6b;
+  color: #fff;
+}
+.btn.secondary1 {
+  background: #d12c2c;
+  color: #fff;
+}
+
+/* Dark Mode secondary button fix */
+[data-theme="dark"] .btn.secondary {
+  background: #9aa0a6;
+  color: #0f0f12;
+}
+[data-theme="dark"] .history-img
+{
+  width: 100%;
+  border-radius: 12px;
+  margin: 12px 0;
+}
+[data-theme="dark"] .phase-img
+{
+   width: 100%;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+[data-theme="dark"] .card
+{
+  border: 0.1px solid #dddddd;
+}
+.app {
+  width: 960px;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border: 0.1px solid #0c0c0c;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 6px 24px rgba(12, 12, 14, 0.08);
+  backdrop-filter: blur(6px);
+}
+
+.phase-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* HISTORY IMAGE SECTION */
+.history-img {
+  width: 100%;
+  border-radius: 12px;
+  margin: 12px 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* PROGRESS BAR */
+.progress-wrap {
+  margin-top: 12px;
+}
+
+.progress {
+  height: 12px;
+  border: 0.5px solid #bdbdbdb0;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress > i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #ff9ec6);
+  width: 0%;
+  transition: width .6s ease;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+input[type=date],
+input[type=number],
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: 6px;
+}
+
+@media(max-width: 880px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+  .btn {
+    padding: 6px 14px;
+  };
+}
+.small
+{
+  font-size: 0.8rem;
+}

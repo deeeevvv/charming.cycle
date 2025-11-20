@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Charming Cycle — Menstrual Cycle Tracker</title>
+  <link rel="shortcut icon" href="logo.jpeg" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"defer></script>
+</head>
+<body data-theme="light">
+  <!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<!-- Modal -->
+<div id="modal" class="modal-overlay">
+  <div class="modal-box">
+    <div id="modalMessage"></div>
+    <div class="modal-btns">
+      <button id="modalCancel" class="btn secondary">Cancel</button>
+      <button id="modalConfirm" class="btn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+  <div class="card" id="main">
+    <header style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+      <b><h1 style="color:var(--accent);margin:0; font-size: 1.2rem;">Charming Cycle</h1>
+        <div class="sub" style="font-size: 0.6rem;">Track cycles • Phases • History</div> </b> 
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-pressed="false">Toggle Theme</button>
+    </header>
+
+    <label for="lastPeriod">Last Period Start Date</label>
+    <input type="date" id="lastPeriod" />
+
+    <div class="row" style="display:flex;gap:10px">
+      <div class="col" style="flex:1">
+        <label for="cycleLength">Avg Cycle Length (days)</label>
+        <input type="number" id="cycleLength" value="28" min="21" max="45" />
+      </div>
+      <div class="col" style="flex:1">
+        <label for="periodLength">Avg Period Length (days)</label>
+        <!-- set default to 6 to match diagram, but phase mapping is fixed (1-6) -->
+        <input type="number" id="periodLength" value="6" min="1" max="10" />
+      </div>
+    </div>
+
+    <div class="controls" style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn" id="calcBtn">Calculate</button>
+      <button class="btn secondary" id="saveBtn">Save to History</button>
+      <button class="btn secondary" id="resetBtn">Reset or Refresh</button>
+    </div>
+
+    <div id="result" style="display:none;margin-top:12px;padding:12px;border-radius:10px;background:var(--glass)"></div>
+
+    <!-- PROGRESS BAR (added directly above the phase image) -->
+    <div class="progress-wrap" id="progressWrap" style="margin-top:12px;">
+      <div class="small">Progress to next period</div>
+      <div class="progress" aria-hidden><i id="progressBar" style="width:0%"></i></div>
+    </div>
+    <!-- PHASE IMAGE SECTION -->
+    <img class="phase-img" src="img.jpg" alt="Menstrual cycle phases diagram" />
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0;color:var(--accent)">Cycle Length History</h3>
+    <b>Detailed Hormonal Linkage:</b><img class="history-img" src="img.png" alt="Cycle length timeline visual" />
+
+    <div class="history" id="historyList" style="max-height:320px;overflow:auto"></div>
+    <button class="btn secondary1" id="clearHistory" style="margin-top:8px">Clear History</button>
+  </div>
+</div>
+</body>
+</html>
