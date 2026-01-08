@@ -7,6 +7,9 @@
   <link rel="shortcut icon" href="logo.jpeg" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
   <script src="script.js"defer></script>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff6b6b">
+  <link rel="apple-touch-icon" href="logo.jpeg">
 </head>
 <body data-theme="light">
   <!-- Toast -->
@@ -72,5 +75,12 @@
     <button class="btn secondary1" id="clearHistory" style="margin-top:8px">Clear History</button>
   </div>
 </div>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js');
+    });
+  }
+</script>
 </body>
 </html>
